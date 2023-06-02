@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'form-produtos',
@@ -6,10 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./form-produtos.component.css']
 })
 export class FormProdutosComponent {
+  @Input() titulo = "Formulário de Produtos";
+  @Output() onSalvar = new EventEmitter<any>();
   produto: any = {id: 0, nome:'', preco: 0.0};
 
   cadastrar() {
-    alert(this.produto.nome);
+    this.onSalvar.emit(this.produto);
     this.produto = {id: 0, nome:'', preco: 0.0};
   }
 }
